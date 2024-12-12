@@ -1,0 +1,23 @@
+<!-- src/app/shared/navbar/navbar.component.html -->
+<nav class="navbar">
+    <div class="navbar-left flex items-center">
+      <span class="hospital-name text-xl font-semibold">Hospital Management</span>
+    </div>
+    <div class="navbar-right flex items-center gap-4">
+      <!-- Logout button -->
+      <a href="/logout" class="text-white hover:text-gray-200 logout">Logout</a>
+  
+      <!-- Menu links (only visible on larger screens) -->
+      <div class="navbar-menu hidden lg:flex gap-6">
+        <a href="/" class="text-white hover:text-gray-200">Home</a>
+        <a href="/about" class="text-white hover:text-gray-200">About Us</a>
+        <a href="/contact" class="text-white hover:text-gray-200">Contact Us</a>
+      </div>
+  
+      <!-- Hamburger menu (only for small screens) -->
+      <button class="hamburger-menu lg:hidden" (click)="toggleSidebar()">
+        <div class="hamburger-icon"></div>
+      </button>
+    </div>
+  </nav>
+  

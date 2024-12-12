@@ -1,0 +1,87 @@
+<div class="profile-container">
+  <div class="header">
+    <h1>My Profile</h1>
+  </div>
+  <div class="profile-content">
+    <!-- Photo Section (Single Container for Button and Image Preview) -->
+<div class="photo-section">
+  <!-- Button to trigger file input -->
+  <button mat-button class="add-photo-button" [ngStyle]="{'background-image': imageUrl ? 'url(' + imageUrl + ')' : ''}" (click)="fileInput.click()">
+    Add Photo
+  </button>
+  <!-- Hidden file input -->
+  <input type="file" #fileInput accept="image/*" (change)="onFileChange($event)" style="display: none;" />
+</div>
+
+
+    <!-- Info Section (Form) -->
+    <div class="info-section">
+      <form (ngSubmit)="onSubmit()">
+        <!-- Name -->
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="name" name="name" required />
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="fill">
+          <mat-label>Email Id</mat-label>
+          <input matInput [(ngModel)]="email" name="email" type="email" required />
+        </mat-form-field>
+
+        <!-- Date of Birth -->
+        <mat-form-field appearance="fill">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [(ngModel)]="dob" name="dob" [matDatepicker]="picker" required />
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Age -->
+        <mat-form-field appearance="fill">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" [(ngModel)]="age" name="age" min="0" max="99" required />
+        </mat-form-field>
+
+        <!-- Gender -->
+        <mat-form-field appearance="fill">
+          <mat-label>Gender</mat-label>
+          <select matNativeControl [(ngModel)]="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </mat-form-field>
+
+        <!-- Blood Group -->
+        <mat-form-field appearance="fill">
+          <mat-label>Blood Group</mat-label>
+          <select matNativeControl [(ngModel)]="bloodGroup" name="bloodGroup" required>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </mat-form-field>
+
+        <!-- Address -->
+        <mat-form-field appearance="fill" class="address-field">
+          <mat-label>Address</mat-label>
+          <textarea matInput [(ngModel)]="address" name="address" rows="3" placeholder="Enter Detailed Address" required></textarea>
+        </mat-form-field>
+
+        <!-- Phone Number -->
+        <mat-form-field appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput [(ngModel)]="phone" name="phone" type="tel" placeholder="Enter Phone Number" required />
+        </mat-form-field>
+
+        <!-- Save Button -->
+        <button mat-raised-button color="primary" class="save-button" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

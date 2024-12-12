@@ -1,0 +1,41 @@
+/* src/app/shared/sidebar/sidebar.component.scss */
+.sidebar {
+    width: 0;  /* Start with 0 width (closed sidebar) */
+    transition: width 0.3s ease;  /* Smooth transition */
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+    height: 100vh;  /* Full height */
+    position: fixed;
+    padding-top: 60px;
+  }
+  
+  .sidebar.open {
+    width: 250px;  /* Set the width of the sidebar when open */
+  }
+  
+  .hamburger-icon {
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  
+  button {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  ul {
+    padding-left: 0;
+  }
+  
+  li {
+    cursor: pointer;
+  }
+  

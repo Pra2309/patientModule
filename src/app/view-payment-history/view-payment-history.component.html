@@ -1,0 +1,48 @@
+<!-- Main Content Section (Below the Navbar) -->
+<div class="main-content ml-64 p-4">
+  <div class="payment-history-container">
+      <div class="table-header">
+          <h1>View Payment History</h1>
+      </div>
+      <table>
+          <thead>
+              <tr>
+                  <th>Payment ID</th>
+                  <th>Date</th>
+                  <th>Payment Mode</th>
+                  <th>Amount Paid</th>
+                  <th>Payment Status</th>
+                  <th>Particulars</th>
+                  <th>Remarks</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let payment of payments">
+                  <td>{{ payment.paymentId }}</td>
+                  <td>{{ payment.dateOfPayment }}</td>
+                  <td>{{ payment.paymentMode }}</td>
+                  <!-- Amount Paid will always be in black -->
+                  <td class="text-black">
+                      {{ payment.amountPaid | currency:'INR' }}
+                  </td>
+                  <!-- Payment Status: Green for "Paid", Red for other statuses -->
+                  <td [ngClass]="{
+                        'text-green-600': payment.status === 'Paid', 
+                        'text-red-600': payment.status !== 'Paid'
+                    }" class="font-bold">
+                      {{ payment.status }}
+                  </td>
+                  <td>{{ payment.purpose }}</td>
+                  <td>{{ payment.remarks }}</td>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="3"><strong>Total:</strong></td>
+                  <td><strong>{{ totalAmount | currency:'INR' }}</strong></td>
+                  <td colspan="3"></td> <!-- Empty cells to align with the remaining columns -->
+              </tr>
+          </tfoot>
+      </table>
+  </div>
+</div>

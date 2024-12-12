@@ -1,0 +1,31 @@
+<!-- src/app/shared/sidebar/sidebar.component.html -->
+<div class="sidebar" [ngClass]="{ 'open': isSidebarOpen }">
+    <!-- Hamburger Icon to open the sidebar (only visible when sidebar is closed) -->
+    <button
+      class="hamburger-icon absolute top-4 left-4 bg-gray-500 text-white p-2 rounded-md"
+      (click)="toggleSidebar()"
+      *ngIf="!isSidebarOpen"
+    >
+      ☰ <!-- Hamburger icon -->
+    </button>
+  
+    <!-- Close Button (only visible when sidebar is open) -->
+    <button
+      class="absolute top-4 right-4 bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+      (click)="toggleSidebar()"
+      *ngIf="isSidebarOpen"
+    >
+      Close
+    </button>
+  
+    <!-- Sidebar content -->
+    <ul class="mt-10">
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/dashboard')">Dashboard</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/appointments')">Appointment Details</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/available-doctors')">View Available Doctors</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/view-medical-history')">View Medical History</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/my-tests')">My Tests</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/payment-history')">View Payment History</li>
+      <li class="px-4 py-2 hover:bg-gray-700" (click)="navigateTo('/profile')">My Profile</li>
+    </ul>
+</div>

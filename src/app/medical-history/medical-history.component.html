@@ -1,0 +1,99 @@
+<!-- Navbar Section -->
+<nav class="navbar">
+    <div class="navbar-left flex items-center">
+      <span class="hospital-name text-xl font-semibold">Hospital Management</span>
+    </div>
+    <div class="navbar-right flex items-center gap-4">
+      <!-- Logout button -->
+      <a href="/logout" class="text-white hover:text-gray-200 logout">Logout</a>
+      
+      <!-- Menu links (only visible on larger screens) -->
+      <div class="navbar-menu hidden lg:flex gap-6">
+        <a href="/" class="text-white hover:text-gray-200">Home</a>
+        <a href="/about" class="text-white hover:text-gray-200">About Us</a>
+        <a href="/contact" class="text-white hover:text-gray-200">Contact Us</a>
+      </div>
+      
+      <!-- Hamburger menu (only for small screens) -->
+      <button class="hamburger-menu lg:hidden" (click)="toggleSidebar()">
+        <div class="hamburger-icon"></div>
+      </button>
+    </div>
+  </nav>
+  
+<!-- Sidebar Section -->
+<div class="sidebar" [ngClass]="{ 'open': isSidebarOpen }">
+  <button
+    class="absolute top-4 right-4 bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+    (click)="toggleSidebar()"
+  >
+    Close
+  </button>
+  <ul class="mt-10">
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/dashboard" (click)="toggleSidebar()">Dashboard</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/appointments" (click)="toggleSidebar()">Appointment Details</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/available-doctors" (click)="toggleSidebar()">View Available Doctors</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/medical-history" (click)="toggleSidebar()">View Medical History</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/my-tests" (click)="toggleSidebar()">My Tests</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/payment-history" (click)="toggleSidebar()">View Payment History</a></li>
+    <li class="px-4 py-2 hover:bg-gray-700"><a routerLink="/profile" (click)="toggleSidebar()">My Profile</a></li>
+  </ul>
+</div>
+
+
+    
+ <!-- Main Content Section -->
+<div class="container-left-align">
+  <div class="medical-history-container">
+    <!-- Header Section with Navbar Color -->
+    <div class="header">
+      <h1>View Medical History</h1>
+    </div>
+
+    <!-- Patient Info Section -->
+    <div class="patient-info-box">
+      <div class="history-item">
+        <strong>Patient ID:</strong> {{ patientId || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Patient Name:</strong> {{ patientName || 'N.A.' }}
+      </div>
+    </div>
+
+    <!-- Medical History Box with Square Style -->
+    <div class="history-box">
+      <div class="history-item">
+        <strong>Medical / Surgical History:</strong> {{ medicalHistory.medicalSurgicalHistory || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Family History:</strong> {{ medicalHistory.familyHistory || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Allergies:</strong> {{ medicalHistory.allergies || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Admission Date/Time:</strong> {{ medicalHistory.admissionDateTime || 'DD/MM/YY HH:MM:SS am/pm' }}
+      </div>
+      <div class="history-item">
+        <strong>Principal Doctor:</strong> {{ medicalHistory.principalDoctor || 'Dr. Kyle Lee' }}
+      </div>
+      <div class="history-item">
+        <strong>Reason for Admission:</strong> {{ medicalHistory.reasonForAdmission || 'Vomiting and diarrhea' }}
+      </div>
+      <div class="history-item">
+        <strong>Principal Diagnosis:</strong> {{ medicalHistory.principalDiagnosis || 'Gastroenteritis' }}
+      </div>
+      <div class="history-item">
+        <strong>Secondary Diagnosis:</strong> {{ medicalHistory.secondaryDiagnosis || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Other Diagnosis:</strong> {{ medicalHistory.otherDiagnosis || 'N.A.' }}
+      </div>
+      <div class="history-item">
+        <strong>Operation Procedures:</strong> {{ medicalHistory.operationProcedures || 'N.A.' }}
+      </div>
+    </div>
+  </div>
+</div>
+
+

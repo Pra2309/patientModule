@@ -1,0 +1,90 @@
+<!-- Navbar Section -->
+<nav class="navbar">
+    <div class="navbar-left flex items-center">
+        <span class="hospital-name text-xl font-semibold">Hospital Management</span>
+    </div>
+    <div class="navbar-right flex items-center gap-4">
+        <!-- Logout button -->
+        <a href="/logout" class="text-white hover:text-gray-200 logout">Logout</a>
+
+        <!-- Menu links (only visible on larger screens) -->
+        <div class="navbar-menu hidden lg:flex gap-6">
+            <a href="/" class="text-white hover:text-gray-200">Home</a>
+            <a href="/about" class="text-white hover:text-gray-200">About Us</a>
+            <a href="/contact" class="text-white hover:text-gray-200">Contact Us</a>
+        </div>
+
+        <!-- Hamburger menu (only for small screens) -->
+        <button class="hamburger-menu lg:hidden" (click)="toggleSidebar()">
+            <div class="hamburger-icon"></div>
+        </button>
+    </div>
+</nav>
+
+<!-- Sidebar Section -->
+<div class="sidebar" [ngClass]="{ 'open': isSidebarOpen }">
+    <button
+        class="absolute top-4 right-4 bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+        (click)="toggleSidebar()"
+    >
+        Close
+    </button>
+    <ul class="mt-10">
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/dashboard">Dashboard</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/appointments">Appointment Details</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/available-doctors">View Available Doctors</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/view-medical-history">View Medical History</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/my-tests">My Tests</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/payment-history">View Payment History</a></li>
+        <li class="px-4 py-2 hover:bg-gray-700"><a href="/profile">My Profile</a></li>
+    </ul>
+</div>
+
+<!-- Main Content Section -->
+<div class="ml-64 p-4">
+    <div class="available-doctors-container">
+      <!-- Table Header Section -->
+      <div class="table-header">
+        <h1>Available Doctors</h1>
+      </div>
+
+      <!-- Table Section -->
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>View Slots</th>
+            <th>Specialty</th>
+            <th>Doctor Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doctor of doctors">
+            <td>{{ doctor.date }}</td>
+            <td><button (click)="openSlotModal(doctor)">View Slots</button></td>
+            <td>{{ doctor.specialty }}</td>
+            <td>{{ doctor.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<!-- Slot Modal (Pop-up) -->
+<div *ngIf="isModalOpen" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Available Slots</h2>
+        <div class="slots-container">
+            <!-- Loop over the slots of the selected doctor -->
+            <div
+                *ngFor="let slot of selectedDoctor?.slots"
+                class="slot"
+                [ngClass]="{'available': slot.isAvailable, 'booked': !slot.isAvailable}"
+                (click)="selectSlot(slot)"
+            >
+                {{ slot.time }}
+            </div>
+        </div>
+        <button (click)="closeModal()">Close</button>
+    </div>
+</div>

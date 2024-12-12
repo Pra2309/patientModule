@@ -1,0 +1,18 @@
+nav {
+    background-color: #813AFB;
+    padding: 10px;
+  
+    a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 15px;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
